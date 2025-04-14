@@ -1,4 +1,4 @@
- <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,12 +16,778 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom styles -->
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Noto Sans JP', sans-serif;
+      }
+      
+      .hero-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      
+      /* Custom color variables */
+      :root {
+        --sushi-navy: 215, 50%, 23%;
+        --sushi-red: 0, 68%, 42%;
+        --sushi-gold: 36, 60%, 55%;
+        --sushi-cream: 40, 30%, 96%;
+        --sushi-dark: 215, 30%, 12%;
+      }
+      
+      /* Custom utility classes */
+      .container-custom {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+      
+      .section-padding {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      
+      @media (min-width: 768px) {
+        .section-padding {
+          padding-top: 6rem;
+          padding-bottom: 6rem;
+        }
+      }
+      
+      .btn-primary {
+        background-color: hsl(var(--sushi-navy));
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        transition: all 300ms;
+        font-weight: 500;
+      }
+      
+      .btn-primary:hover {
+        background-color: hsl(var(--sushi-dark));
+      }
+      
+      .btn-secondary {
+        background-color: hsl(var(--sushi-red));
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        transition: all 300ms;
+        font-weight: 500;
+      }
+      
+      .btn-secondary:hover {
+        background-color: hsla(var(--sushi-red), 0.9);
+      }
+      
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: hsl(var(--sushi-navy));
+      }
+      
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 2.25rem;
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .section-title {
+          font-size: 3rem;
+        }
+      }
+      
+      .section-subtitle {
+        font-size: 1.125rem;
+        color: #4b5563;
+        margin-bottom: 2.5rem;
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      @media (min-width: 768px) {
+        .section-subtitle {
+          font-size: 1.25rem;
+        }
+      }
+      
+      .card-hover {
+        transition: all 300ms;
+      }
+      
+      .card-hover:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform: translateY(-0.25rem);
+      }
+      
+      /* Animation utilities */
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'sushi-navy': 'hsl(215, 50%, 23%)',
+              'sushi-red': 'hsl(0, 68%, 42%)',
+              'sushi-gold': 'hsl(36, 60%, 55%)',
+              'sushi-cream': 'hsl(40, 30%, 96%)',
+              'sushi-dark': 'hsl(215, 30%, 12%)',
+            },
+          }
+        }
+      }
+    </script>
   </head>
 
-  <body>
-    <div id="root"></div>
+  <body class="bg-white">
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full bg-white shadow-sm z-50">
+      <div class="container-custom py-4">
+        <nav class="flex justify-between items-center">
+          <a href="#" class="text-2xl font-bold text-[hsl(215,50%,23%)]">
+            Sushi<span class="text-[hsl(0,68%,42%)]">Delight</span>
+          </a>
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Home</a>
+            <a href="#about" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">About</a>
+            <a href="#menu" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Menu</a>
+            <a href="#testimonials" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Testimonials</a>
+            <a href="#contact" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Contact</a>
+            <a href="#contact" class="btn-primary">Reserve a Table</a>
+          </div>
+          
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden p-2" id="mobile-menu-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div class="md:hidden hidden" id="mobile-menu">
+          <div class="flex flex-col space-y-4 py-4">
+            <a href="#home" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Home</a>
+            <a href="#about" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">About</a>
+            <a href="#menu" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Menu</a>
+            <a href="#testimonials" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Testimonials</a>
+            <a href="#contact" class="font-medium hover:text-[hsl(0,68%,42%)] transition-colors">Contact</a>
+            <a href="#contact" class="btn-primary inline-block text-center">Reserve a Table</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="min-h-screen flex items-center bg-[hsl(40,30%,96%)] hero-pattern pt-20">
+        <div class="container-custom py-16">
+          <div class="flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2 animate-fade-in">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[hsl(215,50%,23%)]">
+                Experience Authentic <span class="text-[hsl(0,68%,42%)]">Japanese Cuisine</span>
+              </h1>
+              <p class="text-lg md:text-xl mb-8 max-w-lg">
+                Savor the authentic flavors of Japan with our carefully crafted sushi and traditional dishes made from the freshest ingredients.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#menu" class="btn-primary text-center">View Our Menu</a>
+                <a href="#contact" class="btn-secondary text-center">Make a Reservation</a>
+              </div>
+            </div>
+            <div class="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+              <img 
+                src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=600"
+                alt="Assorted sushi platter" 
+                class="rounded-lg shadow-xl max-w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section-padding bg-white">
+        <div class="container-custom">
+          <h2 class="section-title text-center">Our Story</h2>
+          <p class="section-subtitle text-center">Learn about our passion for authentic Japanese cuisine and commitment to quality</p>
+          
+          <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2">
+              <img 
+                src="/placeholder.svg" 
+                alt="Restaurant Owner" 
+                class="rounded-lg shadow-lg max-w-full h-auto"
+              />
+            </div>
+            <div class="lg:w-1/2">
+              <h3 class="text-2xl font-semibold mb-4 text-[hsl(215,50%,23%)]">Tradition Meets Innovation</h3>
+              <p class="mb-4">
+                Founded in 2005 by Chef Hiroshi Tanaka, Sushi Delight has been serving the community with authentic Japanese cuisine made from the freshest ingredients sourced locally and from Japan.
+              </p>
+              <p class="mb-4">
+                Our restaurant combines traditional Japanese cooking techniques with modern culinary innovations to create an unforgettable dining experience for our guests.
+              </p>
+              <p class="mb-6">
+                Every dish at Sushi Delight is crafted with care and presented as a work of art, staying true to the Japanese philosophy that we eat first with our eyes.
+              </p>
+              <div class="flex items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=100"
+                  alt="Chef Hiroshi Tanaka" 
+                  class="w-16 h-16 rounded-full object-cover mr-4"
+                />
+                <div>
+                  <p class="font-semibold text-[hsl(215,50%,23%)]">Chef Hiroshi Tanaka</p>
+                  <p class="text-gray-600">Master Sushi Chef & Founder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Menu Section -->
+      <section id="menu" class="section-padding bg-[hsl(40,30%,96%)]">
+        <div class="container-custom">
+          <h2 class="section-title text-center">Our Menu</h2>
+          <p class="section-subtitle text-center">Discover our selection of traditional and signature sushi rolls, sashimi, and Japanese dishes</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Menu Item 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Signature Sushi Platter" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Signature Sushi Platter</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$32</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  A curated selection of our chef's favorite nigiri and maki rolls, featuring the freshest seasonal fish.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(36,60%,55%)] bg-opacity-20 text-[hsl(36,60%,55%)] px-2 py-1 rounded-full text-xs font-medium">Chef's Choice</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Menu Item 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1615361200141-f45961bc55ad?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Sashimi Deluxe" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Sashimi Deluxe</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$28</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Premium cuts of tuna, salmon, yellowtail, and white fish served with fresh wasabi and housemade soy sauce.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(215,50%,23%)] bg-opacity-20 text-[hsl(215,50%,23%)] px-2 py-1 rounded-full text-xs font-medium">Popular</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Menu Item 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1511344407683-b1172dce025f?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Dragon Roll" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Dragon Roll</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$18</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Shrimp tempura roll topped with avocado, unagi, and a drizzle of sweet eel sauce and spicy mayo.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(0,68%,42%)] bg-opacity-20 text-[hsl(0,68%,42%)] px-2 py-1 rounded-full text-xs font-medium">Spicy</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Menu Item 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Teriyaki Salmon" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Teriyaki Salmon</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$24</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Grilled Atlantic salmon glazed with our homemade teriyaki sauce, served with steamed rice and seasonal vegetables.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(36,60%,55%)] bg-opacity-20 text-[hsl(36,60%,55%)] px-2 py-1 rounded-full text-xs font-medium">Gluten-Free Option</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Menu Item 5 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1626458554904-302c975922e4?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Tempura Udon" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Tempura Udon</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$16</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Thick udon noodles in a rich dashi broth, topped with crispy shrimp and vegetable tempura.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(215,50%,23%)] bg-opacity-20 text-[hsl(215,50%,23%)] px-2 py-1 rounded-full text-xs font-medium">Comfort Food</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Menu Item 6 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+              <img 
+                src="https://images.unsplash.com/photo-1534256958597-7fe685cbd745?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=500"
+                alt="Matcha Cheesecake" 
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-xl font-semibold text-[hsl(215,50%,23%)]">Matcha Cheesecake</h3>
+                  <span class="text-[hsl(0,68%,42%)] font-medium">$9</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Creamy cheesecake infused with premium matcha green tea, served with a seasonal fruit compote.
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span class="bg-[hsl(36,60%,55%)] bg-opacity-20 text-[hsl(36,60%,55%)] px-2 py-1 rounded-full text-xs font-medium">Dessert</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-12">
+            <a href="#contact" class="btn-primary">View Full Menu & Reserve</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="section-padding bg-white">
+        <div class="container-custom">
+          <h2 class="section-title text-center">What Our Customers Say</h2>
+          <p class="section-subtitle text-center">Read testimonials from our satisfied customers</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-[hsl(40,30%,96%)] p-6 rounded-lg shadow-md">
+              <div class="flex gap-1 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="text-gray-700 italic mb-6">"The sashimi here is absolutely incredible. So fresh and expertly sliced. I've been to Japan several times, and this is as authentic as it gets in the city. Highly recommended!"</p>
+              <div class="flex items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=100"
+                  alt="Sophia Williams" 
+                  class="w-10 h-10 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <p class="font-medium text-[hsl(215,50%,23%)]">Sophia Williams</p>
+                  <p class="text-sm text-gray-600">Regular Customer</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="bg-[hsl(40,30%,96%)] p-6 rounded-lg shadow-md">
+              <div class="flex gap-1 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="text-gray-700 italic mb-6">"The Dragon Roll and Teriyaki Salmon are absolute must-tries! The service is always impeccable, and the ambiance is perfect for both casual dining and special occasions."</p>
+              <div class="flex items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=100"
+                  alt="Michael Johnson" 
+                  class="w-10 h-10 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <p class="font-medium text-[hsl(215,50%,23%)]">Michael Johnson</p>
+                  <p class="text-sm text-gray-600">Food Blogger</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-[hsl(40,30%,96%)] p-6 rounded-lg shadow-md">
+              <div class="flex gap-1 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[hsl(36,60%,55%)]">
+                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="text-gray-700 italic mb-6">"We had our anniversary dinner here and it was perfect. The staff went above and beyond to make our evening special. The Matcha Cheesecake was the best dessert I've had in years!"</p>
+              <div class="flex items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&q=80&w=100"
+                  alt="Emily & David Chen" 
+                  class="w-10 h-10 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <p class="font-medium text-[hsl(215,50%,23%)]">Emily & David Chen</p>
+                  <p class="text-sm text-gray-600">Loyal Customers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section-padding bg-[hsl(215,50%,23%)] text-white">
+        <div class="container-custom">
+          <h2 class="section-title text-center text-white">Contact Us</h2>
+          <p class="section-subtitle text-center text-gray-200">Reserve a table or get in touch with us</p>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">Location & Hours</h3>
+                <div class="space-y-3">
+                  <p class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-[hsl(36,60%,55%)]">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+                    123 Sushi Street, Foodie District, City
+                  </p>
+                  <p class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-[hsl(36,60%,55%)]">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Mon-Thu: 11:30 AM - 10:00 PM<br>
+                    Fri-Sat: 11:30 AM - 11:00 PM<br>
+                    Sun: 12:00 PM - 9:00 PM
+                  </p>
+                  <p class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-[hsl(36,60%,55%)]">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                    (123) 456-7890
+                  </p>
+                  <p class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-[hsl(36,60%,55%)]">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    info@sushidelight.com
+                  </p>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                  <a href="#" class="bg-white text-[hsl(215,50%,23%)] p-2 rounded-full hover:bg-[hsl(36,60%,55%)] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white text-[hsl(215,50%,23%)] p-2 rounded-full hover:bg-[hsl(36,60%,55%)] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white text-[hsl(215,50%,23%)] p-2 rounded-full hover:bg-[hsl(36,60%,55%)] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="bg-white text-[hsl(215,50%,23%)] p-2 rounded-full hover:bg-[hsl(36,60%,55%)] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <form class="bg-white p-6 rounded-lg shadow-lg text-gray-700">
+                <h3 class="text-xl font-semibold mb-4 text-[hsl(215,50%,23%)]">Make a Reservation</h3>
+                
+                <div class="mb-4">
+                  <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                  <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" placeholder="Your Name" required>
+                </div>
+                
+                <div class="mb-4">
+                  <label for="email" class="block text-sm font-medium mb-1">Email Address</label>
+                  <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" placeholder="Your Email" required>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="date" class="block text-sm font-medium mb-1">Date</label>
+                    <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" required>
+                  </div>
+                  <div>
+                    <label for="time" class="block text-sm font-medium mb-1">Time</label>
+                    <input type="time" id="time" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" required>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <label for="guests" class="block text-sm font-medium mb-1">Number of Guests</label>
+                  <select id="guests" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" required>
+                    <option value="">Select number of guests</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6+ People (Please specify in notes)</option>
+                  </select>
+                </div>
+                
+                <div class="mb-4">
+                  <label for="notes" class="block text-sm font-medium mb-1">Special Requests</label>
+                  <textarea id="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[hsl(36,60%,55%)]" placeholder="Any special requests or dietary requirements?"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-[hsl(0,68%,42%)] hover:bg-[hsl(0,68%,38%)] text-white py-3 px-4 rounded-md font-medium transition-colors">
+                  Reserve a Table
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[hsl(215,30%,12%)] text-gray-300 py-12">
+      <div class="container-custom">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- About Us -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-white">Sushi<span class="text-[hsl(0,68%,42%)]">Delight</span></h3>
+            <p class="mb-4">
+              Experience authentic Japanese cuisine prepared with care, tradition, and the freshest ingredients.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-white">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#home" class="hover:text-[hsl(36,60%,55%)] transition-colors">Home</a></li>
+              <li><a href="#about" class="hover:text-[hsl(36,60%,55%)] transition-colors">About Us</a></li>
+              <li><a href="#menu" class="hover:text-[hsl(36,60%,55%)] transition-colors">Menu</a></li>
+              <li><a href="#testimonials" class="hover:text-[hsl(36,60%,55%)] transition-colors">Testimonials</a></li>
+              <li><a href="#contact" class="hover:text-[hsl(36,60%,55%)] transition-colors">Contact Us</a></li>
+              <li><a href="#" class="hover:text-[hsl(36,60%,55%)] transition-colors">Privacy Policy</a></li>
+            </ul>
+          </div>
+          
+          <!-- Contact Info -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-white">Contact Info</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 mt-0.5 text-[hsl(36,60%,55%)]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                <span>123 Sushi Street, Foodie District, City</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 mt-0.5 text-[hsl(36,60%,55%)]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                <span>(123) 456-7890</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 mt-0.5 text-[hsl(36,60%,55%)]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                <span>info@sushidelight.com</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Opening Hours -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-white">Opening Hours</h3>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span>Monday - Thursday</span>
+                <span>11:30 AM - 10:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Friday - Saturday</span>
+                <span>11:30 AM - 11:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday</span>
+                <span>12:00 PM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <hr class="border-gray-800 my-8">
+        
+        <div class="text-center">
+          <p>&copy; 2025 Sushi Delight. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Menu JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80, // Adjust for fixed header
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
